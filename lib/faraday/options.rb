@@ -215,7 +215,7 @@ module Faraday
 
   class SSLOptions < Options.new(:verify, :ca_file, :ca_path, :verify_mode,
     :cert_store, :client_cert, :client_key, :certificate, :private_key, :verify_depth,
-    :version, :min_version, :max_version)
+    :version, :min_version, :max_version, :verify_callback)
 
     def verify?
       verify != false

@@ -113,6 +113,7 @@ module Faraday
         http.ssl_version  = ssl[:version]      if ssl[:version]
         http.min_version  = ssl[:min_version]  if ssl[:min_version]
         http.max_version  = ssl[:max_version]  if ssl[:max_version]
+        http.verify_callback = ssl[:verify_callback] if ssl[:verify_callback]
       end
 
       def configure_request(http, req)

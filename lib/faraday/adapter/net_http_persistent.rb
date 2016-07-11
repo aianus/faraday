@@ -56,6 +56,7 @@ module Faraday
         http_set(http, :private_key, ssl[:client_key])  if ssl[:client_key]
         http_set(http, :ca_file,     ssl[:ca_file])     if ssl[:ca_file]
         http_set(http, :ssl_version, ssl[:version])     if ssl[:version]
+        http.verify_callback = ssl[:verify_callback]    if ssl[:verify_callback]
       end
 
       def http_set(http, attr, value)
