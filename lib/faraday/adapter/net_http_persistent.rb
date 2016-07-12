@@ -25,6 +25,7 @@ module Faraday
         # see: http://docs.seattlerb.org/net-http-persistent/Net/HTTP/Persistent.html#attribute-i-idle_timeout
         req = env[:request]
         http.idle_timeout = req[:idle_timeout] if req[:idle_timeout]
+        http.retry_change_requests = req[:retry_change_requests] if req[:retry_change_requests]
 
         http.request env[:url], create_request(env)
       rescue Errno::ETIMEDOUT => error
