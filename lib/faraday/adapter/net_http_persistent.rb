@@ -64,6 +64,12 @@ module Faraday
           http.send("#{attr}=", value)
         end
       end
+
+      def configure_request_options(http, req)
+        super
+        http.idle_timeout          = req[:idle_timeout]          if req[:idle_timeout]
+        http.retry_change_requests = req[:retry_change_requests] if req[:retry_change_requests]
+      end
     end
   end
 end

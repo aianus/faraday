@@ -120,6 +120,7 @@ module Faraday
         if req[:timeout]
           http.read_timeout  = req[:timeout]
           http.open_timeout  = req[:timeout]
+          http.open_timeout  =  req[:open_timeout] if req[:open_timeout]
           http.write_timeout = req[:timeout] if http.respond_to?(:write_timeout=)
         end
         http.open_timeout  = req[:open_timeout]  if req[:open_timeout]
