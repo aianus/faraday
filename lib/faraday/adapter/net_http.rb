@@ -36,10 +36,9 @@ module Faraday
       def call(env)
         super
         with_net_http_connection(env) do |http|
-          configure_ssl(http, env[:ssl]) if env[:url].scheme == 'https' and env[:ssl]
-          configure_request(http, env[:request])
-
           begin
+            configure_ssl(http, env[:ssl]) if env[:url].scheme == 'https' and env[:ssl]
+            configure_request(http, env[:request])
             http_response = perform_request(http, env)
           rescue *NET_HTTP_EXCEPTIONS => err
             if defined?(OpenSSL) && OpenSSL::SSL::SSLError === err
